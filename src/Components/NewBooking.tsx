@@ -23,6 +23,7 @@ import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import { usePaymentDetailsContext } from "../context_API/PaymentDetailsContext";
 import { useUpdateGuestDetailsContext } from "../context_API/UpdateCreateGuestDetailsContext";
+import { useTheme } from '@mui/material/styles';
 
 const NewBooking = ({
   handleControlStep,
@@ -41,10 +42,11 @@ const NewBooking = ({
   const [UnSelectedInvitees, setUnSelectedInvitees] = useState<
     Set<string | undefined>
   >(new Set());
-
   const [invite, setInvite] = useState<boolean>(false);
   const [invitees, setInvitees] = useState<Invitee[]>([]);
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
+
+ 
 
   // for update
 
@@ -221,7 +223,7 @@ const NewBooking = ({
   const handleClose = () => {
     if (setIsOpenNewBooking) setIsOpenNewBooking(false);
   };
-  const theme = createTheme({
+  const themes = createTheme({
     typography: {
       fontFamily: "Roboto",
       h6: {
@@ -288,8 +290,10 @@ const NewBooking = ({
     }
   }, [document, setValue, isBackTracker]);
 
+  const theme = useTheme();
+
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={themes}>
       <Box
         sx={{
           width: "500px",
@@ -348,7 +352,8 @@ const NewBooking = ({
                     py: "2px",
                     color: "black",
                     "&:hover": {
-                      backgroundColor: "#42526E",
+                      // backgroundColor: "#42526E",
+                      backgroundColor:theme.textcolor.text,
                       color: "white",
                     },
                   }}
@@ -361,7 +366,8 @@ const NewBooking = ({
                     py: "2px",
                     color: "black",
                     "&:hover": {
-                      backgroundColor: "#42526E",
+                      // backgroundColor: "#42526E",
+                      backgroundColor:theme.textcolor.text,
                       color: "white",
                     },
                   }}
@@ -583,7 +589,8 @@ const NewBooking = ({
                         py: "2px",
                         color: "black",
                         "&:hover": {
-                          backgroundColor: "#42526E",
+                          // backgroundColor: "#42526E",
+                          backgroundColor:theme.textcolor.text,
                           color: "white",
                         },
                       }}
@@ -596,7 +603,8 @@ const NewBooking = ({
                         py: "2px",
                         color: "black",
                         "&:hover": {
-                          backgroundColor: "#42526E",
+                          // backgroundColor: "#42526E",
+                          backgroundColor:theme.textcolor.text,
                           color: "white",
                         },
                       }}
@@ -924,7 +932,8 @@ const NewBooking = ({
                     sx={{
                       backgroundColor: "white",
                       color: "black",
-                      border: "1px solid #BDBDBD",
+                      // border: "1px solid #BDBDBD",
+                      border: theme.borderstyle.border,
                     }}
                     onClick={handleClose}
                   >
